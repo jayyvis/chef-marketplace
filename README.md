@@ -33,7 +33,7 @@ Usage
 Simply add `role[chef-marketplace]` to a run list.
 
 
-Deploying a chef-marketplace Server
+Deploying a Booz Allen Hamilton Marketplace system
 -----------
 This section details "quick deployment" steps.
 
