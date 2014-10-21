@@ -43,14 +43,14 @@ This section details "quick deployment" steps.
 
 2. Change directory to the repo folder
 
-        $ cd chef-marketplace-cookbook
+        $ cd chef-marketplace
 
 3. Create a solo.rb file
 
     $ vim solo.rb
 
-      file_cache_path "/root/dpi-chef"
-      cookbook_path "/root/dpi-chef/cookbooks"
+      file_cache_path "/root/chef-repo"
+      cookbook_path "/root/chef-repo/cookbooks"
 
 
 3. Install dependencies:
@@ -68,8 +68,8 @@ This section details "quick deployment" steps.
 
 License & Authors
 -----------------
-- Author:: Chris Kacerguis ( <jellyfishopensource@bah.com> )
-- Author:: Mandeep Bal ( <jellyfishopensource@bah.com> )
+- Author:: Chris Kacerguis
+- Author:: Mandeep Bal
 
 ```text
 Copyright:: 2014, Booz Allen Hamilton

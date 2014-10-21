@@ -1,10 +1,10 @@
-name             'bah-marketplace'
+name             'chef-marketplace'
 maintainer       'Booz Allen Hamilton'
-maintainer_email 'dpi-opensource@bah.com'
+maintainer_email 'jellyfishopensource@bah.com'
 license          'All rights reserved'
 description      'Installs/Configures bah-marketplace'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.0'
+version          '0.1.1'
 
 depends "apache2"
 depends "ntp"
