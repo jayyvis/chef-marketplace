@@ -2,7 +2,7 @@ name             'chef-marketplace'
 maintainer       'Booz Allen Hamilton'
 maintainer_email 'jellyfishopensource@bah.com'
 license          'All rights reserved'
-description      'Installs/Configures bah-marketplace'
+description      'Installs/Configures chef-marketplace'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.1.2'
 
