@@ -10,11 +10,14 @@ Tested on RHEL 6.5 and CentOS 6.5. Should work on any Red Hat family distributio
 
 ### Cookbooks
 - apache2
-- mysql
+- ntp
 - php
-- apache2
 - fail2ban
+- openssl
+- mysql
 - database
+- iptables
+- selinux
 
 Attributes
 ----------
@@ -30,40 +33,136 @@ Attributes
 
 Usage
 -----
-Simply add `role[chef-marketplace]` to a run list.
+Simply add the cookbook to your runlist or add the cookbook to a role you have created.
 
 
 Deploying a Booz Allen Hamilton Marketplace system
 -----------
-This section details "quick deployment" steps.
+This section details "quick deployment" steps using chef-solo
 
-1. Clone this repository from GitHub:
+1. Install Chef Client
 
-        $ git clone git@github.com:booz-allen-hamilton/chef-marketplace.git
 
-2. Change directory to the repo folder
+         $ curl -L https://www.opscode.com/chef/install.sh | sudo bash
 
-        $ cd chef-marketplace
+2. Create a Chef repo folder and a cookbooks folder under the /tmp directory
+
+
+         $ mkdir -p /tmp/chef/cookbooks
+         $ cd /tmp/chef/
 
 3. Create a solo.rb file
 
-    $ vim solo.rb
 
-      file_cache_path "/root/chef-repo"
-      cookbook_path "/root/chef-repo/cookbooks"
+         $ vi /tmp/chef/solo.rb
+         
+               file_cache_path "/tmp/chef/roles"
+               cookbook_path "/tmp/chef/cookbooks"
+
+4. Create a marketplace.json file, this will be the attributes file and contains the run_list
 
 
-3. Install dependencies:
+        $ vi /tmp/chef/marketplace.json
+        
+              {
+                "run_list": [
+                "recipe[chef-marketplace]"
+               ]
+              }
 
-        Download the dependent cookbooks from Chef Supermarket
+5. Download and extract the cookbook dependencies:
 
-4. Install Chef Client
 
-    $ curl -L https://www.opscode.com/chef/install.sh | sudo bash
+    $ cd /tmp/chef/cookbooks
+    $ knife cookbook site download apache2
+    $ knife cookbook site download ntp
+    $ knife cookbook site download php
+    $ knife cookbook site download fail2ban
+    $ knife cookbook site download openssl
+    $ knife cookbook site download mysql
+    $ knife cookbook site download database
+    $ knife cookbook site download iptables
+    $ knife cookbook site download selinux
+    $ knife cookbook site download postgresql
+    $ knife cookbook site download aws
+    $ knife cookbook site download apt
+    $ knife cookbook site download xfs
+    $ knife cookbook site download mysql-chef_gem
+    $ knife cookbook site download yum-mysql-community
+    $ knife cookbook site download chef-sugar
+    $ knife cookbook site download yum
+    $ knife cookbook site download yum-epel
+    $ knife cookbook site download build-essential
+    $ knife cookbook site download xml
+    $ knife cookbook site download windows
+    $ knife cookbook site download iis
+    $ knife cookbook site download logrotate
+    $ knife cookbook site download pacman
+    $ knife cookbook site download chef_handler
+    $ tar xvfz apache2-*.tar.gz
+    $ tar xvfz database-*.tar.gz
+    $ tar xvfz fail2ban-*.tar.gz
+    $ tar xvfz iptables-*.tar.gz
+    $ tar xvfz mysql-*.tar.gz
+    $ tar xvfz ntp-*.tar.gz
+    $ tar xvfz openssl-*.tar.gz
+    $ tar xvfz php-*.tar.gz
+    $ tar xvfz selinux-*.tar.gz
+    $ tar xvfz postgresql-*.tar.gz
+    $ tar xvfz aws-*.tar.gz
+    $ tar xvfz xfs-*.tar.gz
+    $ tar xvfz mysql-chef_gem-*.tar.gz
+    $ tar xvfz yum-mysql-community-*.tar.gz
+    $ tar xvfz chef-sugar-*.tar.gz
+    $ tar xvfz yum-*.tar.gz
+    $ tar xvfz yum-epel-*.tar.gz
+    $ tar xvfz build-essential-*.tar.gz
+    $ tar xvfz xml-*.tar.gz
+    $ tar xvfz windows-*.tar.gz
+    $ tar xvfz iis-*.tar.gz
+    $ tar xvfz apt-*.tar.gz
+    $ tar xvfz logrotate-*.tar.gz
+    $ tar xvfz pacman-*.tar.gz
+    $ tar xvfz chef_handler-*.tar.gz
+    $ rm -f apache2-*.tar.gz
+    $ rm -f database-*.tar.gz
+    $ rm -f fail2ban-*.tar.gz
+    $ rm -f iptables-*.tar.gz
+    $ rm -f mysql-*.tar.gz
+    $ rm -f ntp-*.tar.gz
+    $ rm -f openssl-*.tar.gz
+    $ rm -f php-*.tar.gz
+    $ rm -f selinux-*.tar.gz
+    $ rm -f postgresql-*.tar.gz
+    $ rm -f aws-*.tar.gz
+    $ rm -f xfs-*.tar.gz
+    $ rm -f mysql-chef_gem-*.tar.gz
+    $ rm -f yum-mysql-community-*.tar.gz
+    $ rm -f chef-sugar-*.tar.gz
+    $ rm -f yum-*.tar.gz
+    $ rm -f yum-epel-*.tar.gz
+    $ rm -f build-essential-*.tar.gz
+    $ rm -f xml-*.tar.gz
+    $ rm -f windows-*.tar.gz
+    $ rm -f iis-*.tar.gz
+    $ rm -f apt-*.tar.gz
+    $ rm -f logrotate-*.tar.gz
+    $ rm -f pacman-*.tar.gz
+    $ rm -f chef_handler-*.tar.gz
 
-5. Run Chef-solo:
+5. Download and extract the cookbook:
 
-    $ chef-solo -c solo.rb -j roles/bahmarketplace.json
+
+    $ cd /tmp/chef/cookbooks
+    $ knife cookbook site download chef-marketplace
+    $ tar xvfz chef-marketplace-*.tar.gz
+    $ rm -f chef-marketplace-*.tar.gz
+    
+7. Run Chef-solo:
+
+
+    $ cd /tmp/chef
+    $ chef-solo -c solo.rb -j marketplace.json
 
 
 License & Authors
