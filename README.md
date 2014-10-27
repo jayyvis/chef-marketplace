@@ -56,7 +56,7 @@ This section details "quick deployment" steps using chef-solo
 
           $ vi /tmp/chef/solo.rb
          
-               file_cache_path "/tmp/chef/roles"
+               file_cache_path "/tmp/chef"
                cookbook_path "/tmp/chef/cookbooks"
 
 4. Create a marketplace.json file, this will be the attributes file and contains the run_list
@@ -151,7 +151,7 @@ This section details "quick deployment" steps using chef-solo
           $ rm -f chef_handler-*.tar.gz
 
 
-5. Download and extract the cookbook:
+6. Download and extract the cookbook:
 
 
           $ cd /tmp/chef/cookbooks
