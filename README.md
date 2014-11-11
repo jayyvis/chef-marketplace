@@ -153,12 +153,12 @@ This section details "quick deployment" steps using chef-solo
 
 6. Download and extract the cookbook:
 
-
-          $ cd /tmp/chef/cookbooks
-          $ knife cookbook site download chef-marketplace
-          $ tar xvfz chef-marketplace-*.tar.gz
-          $ rm -f chef-marketplace-*.tar.gz
-    
+          $ yum install -y wget
+          $ wget https://github.com/booz-allen-hamilton/chef-marketplace/archive/master.tar.gz
+          $ tar xvfz master.tar.gz 
+          $ rm -rf master.tar.gz 
+          $ mv chef-marketplace-master/ chef-marketplace
+          
 7. Run Chef-solo:
 
 
